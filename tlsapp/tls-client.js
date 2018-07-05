@@ -1,7 +1,7 @@
 const tls = require('tls');
 const fs = require('fs');
 
-const port = 9443;
+const port = 10443;
 const hostname = 'localhost';
 
 const options = {
@@ -9,13 +9,14 @@ const options = {
     port: port,
 
     // Necessary only if using the client certificate authentication
-    key: fs.readFileSync('clientcert/rsa2048-key.pem'),
-    cert: fs.readFileSync('clientcert/rsa2048-cert.pem'),
+    key: fs.readFileSync('clientcert/nodejs-tls-client-key.pem'),
+    cert: fs.readFileSync('clientcert/nodejs-tls-client-cert.pem'),
+
+
     requestCert: true,
-
-
     // Necessary only if the server uses the self-signed certificate
-    ca: [fs.readFileSync('servercert/rsa2048-cert.pem')]
+    // ca: [fs.readFileSync('clientcert/servercert_toconnect/nodejs-tls-server-cert.pem')],
+    ca: [fs.readFileSync('clientcert/servercert_toconnect/python-tls-server-cert.pem')]
 };
 
 
